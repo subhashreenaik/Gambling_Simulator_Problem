@@ -79,8 +79,22 @@ public class Gambler {
 			}
 			
 		}
+     	
+     	
      	System.out.println("The lukiest day where i got maximum "+max);
      	System.out.println("The unlukiest day where i lost maximum "+min);
+     	
+     	
+     	//if gambler won,then it will continue for next month
+     	if(winorlost_amnt>0) {
+     		//Here recursion is happening
+     		checkingWinOrLoose(n);
+     		
+     	}
+     	else
+     	{
+     		
+     	}
      	
     }
     
