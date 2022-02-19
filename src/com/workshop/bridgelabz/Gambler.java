@@ -12,13 +12,15 @@ public class Gambler {
     static int percentage;
     static int max_perStake;
     static int min_perStake;
+    static int woncount=0;
+    static int lostcount=0;
     
     
     
     
     static void checkingWinOrLoose(int n) {
     	
-     	for(int day=0;day<20;day++) {
+     	for(int day=0;day<30;day++) {
      		
      		stake=stake+n;
      		fixed_stake=stake;
@@ -45,17 +47,20 @@ public class Gambler {
      	
      	if(stake == max_perStake) {
      		winorlost_amnt += max_perStake-fixed_stake;
-            System.out.println("Gambler won the game  and total amount for the day "+winorlost_amnt);
-           
+            System.out.println("Gambler won the game  and resigned for the day "+winorlost_amnt);
+            woncount++;
             
         }
         if(stake == min_perStake) {
         	winorlost_amnt -= fixed_stake-min_perStake;
-        	System.out.println("Gambler lost the game  and total amount for the day "+winorlost_amnt );
-        
+        	System.out.println("Gambler lost the game  and resigned for the day "+winorlost_amnt );
+        	lostcount++;
      	}
      	
      	}
+     	System.out.println("Total no of days the gambler won is :"+ woncount);
+     	System.out.println("Total no of days the gambler lost is :"+ lostcount);
+     	
     }
     
     	
