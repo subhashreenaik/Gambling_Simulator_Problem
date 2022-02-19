@@ -1,51 +1,76 @@
 package com.workshop.bridgelabz;
 
+import java.util.Scanner;
+
 public class Gambler {
-	
-	//Declare Constant
-    public final int STAKE=100;
-    public final int BET_FOREACHGAME=1;
-    
+
     //Declare variables
     static int bet=1;
-    static int stake=100;
+    static int stake=0;
+    static int fixed_stake=0;
+    static int winorlost_amnt=0;
+    static int percentage;
+    static int max_perStake;
+    static int min_perStake;
     
     
-    static void checkingWinOrLoose() {
-     	
-     	while(stake < 150 && stake > 50 ) {
+    
+    
+    static void checkingWinOrLoose(int n) {
+    	
+     	for(int day=0;day<20;day++) {
+     		
+     		stake=stake+n;
+     		fixed_stake=stake;
+     		percentage=(int)(stake/2);
+     		max_perStake = stake+percentage;
+     		min_perStake = stake-percentage;
+     		
+     		
+     	while(stake < max_perStake && stake > min_perStake ) {
      	int check=(int)(Math.random() *10)%2; 
      	switch(check){
      	
      	case 1:
-        {
        	 stake+=bet;
-       	 break;
-           //System.out.println("Gamler is winning "+stake); 	
-        }
-        default:
-        {
+       	 
+       	 break;	  
+        default: 
           stake -=bet;
-          break;
-        	
-         }
-      }
+          
+          break;	
+     	}
      	
+     	}
      	
-    }
-     	if(stake ==150) {
-     	System.out.println("Gambler won the game  and resigned for the day ");
-    }
-    if(stake == 50) {
-    	System.out.println("Gambler lost the game  and resigned for the day ");
-    }
-    }
+     	if(stake == max_perStake) {
+     		winorlost_amnt += max_perStake-fixed_stake;
+            System.out.println("Gambler won the game  and total amount for the day "+winorlost_amnt);
+           
+            
+        }
+        if(stake == min_perStake) {
+        	winorlost_amnt -= fixed_stake-min_perStake;
+        	System.out.println("Gambler lost the game  and total amount for the day "+winorlost_amnt );
+        
+     	}
      	
+     	}
+    }
+    
+    	
    
     
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		checkingWinOrLoose();
+	
+		
+		System.out.println("Enter stake value :");
+		Scanner scan=new Scanner(System.in);
+		int n = scan.nextInt();
+		
+		//Here calling the method
+		checkingWinOrLoose(n);
+		scan.close();
 	}
 
 }
